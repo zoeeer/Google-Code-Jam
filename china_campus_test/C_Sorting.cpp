@@ -73,34 +73,34 @@ void merge_sort(int A[], int p, int r)
 
 int main()
 {
-	int T, iCase;
+    int T, iCase;
     scanf("%d", &T);
     for(iCase = 1; iCase <= T; ++iCase) {
-		int N;
-		cin >> N;
-		int A[NMAX], B[NMAX], isodd[NMAX];
-		int *pA = A;
-		int *pB = B;
-		for (int i = 0; i < N; ++i) {
-			int x;
-			cin >> x;
-			if (isodd[i] = x & 1)
-				*pA++ = x;
-			else
-				*pB++ = x;
-		}
-		merge_sort(A, 0, pA - A - 1);
-		merge_sort(B, 0, pB - B - 1);
-		pA = A; // print A[] in increasing order
-		--pB;   // print B[] in decreasing order
-		printf("Case #%d:", iCase);
-		for (int i = 0; i < N; ++i) {
-			if (isodd[i])
-				cout << ' ' << *pA++;
-			else
-				cout << ' ' << *pB--;
-		}
-		cout << endl;
+        int N;
+        cin >> N;
+        int A[NMAX], B[NMAX], isodd[NMAX];
+        int *pA = A;
+        int *pB = B;
+        for (int i = 0; i < N; ++i) {
+            int x;
+            cin >> x;
+            if (isodd[i] = x & 1)
+                *pA++ = x;
+            else
+                *pB++ = x;
+        }
+        merge_sort(A, 0, pA - A - 1);
+        merge_sort(B, 0, pB - B - 1);
+        pA = A; // print A[] in increasing order
+        --pB;   // print B[] in decreasing order
+        printf("Case #%d:", iCase);
+        for (int i = 0; i < N; ++i) {
+            if (isodd[i])
+                cout << ' ' << *pA++;
+            else
+                cout << ' ' << *pB--;
+        }
+        cout << endl;
     }
     return 0;
 }
