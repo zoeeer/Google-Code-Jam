@@ -65,8 +65,8 @@ ULL findID(ULL p, ULL q)
 int main()
 {
 	int T, iCase;
-    scanf("%d", &T);
-    for(iCase = 1; iCase <= T; ++iCase) {
+	scanf("%d", &T);
+	for(iCase = 1; iCase <= T; ++iCase) {
 		int id;
 		cin >> id;
 		printf("Case #%d:", iCase);
@@ -82,7 +82,7 @@ int main()
 			cout << ' ' << findID(p, q);
 		}
 		cout << endl;
-    }
+	}
 
-    return 0;
+	return 0;
 }
