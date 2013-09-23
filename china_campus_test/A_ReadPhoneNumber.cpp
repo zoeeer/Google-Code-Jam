@@ -38,72 +38,73 @@ using namespace std;
 # define NMAX 101
 
 char *Digit[] = {
-	"zero",
-	"one",
-	"two",
-	"three",
-	"four",
-	"five",
-	"six",
-	"seven",
-	"eight",
-	"nine"
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine"
 };
 
 char *Dup[] = {
-	"",
-	"",
-	"double",
-	"triple",
-	"quadruple",
-	"quintuple",
-	"sextuple",
-	"septuple",
-	"octuple",
-	"nonuple",
-	"decuple"
+    "",
+    "",
+    "double",
+    "triple",
+    "quadruple",
+    "quintuple",
+    "sextuple",
+    "septuple",
+    "octuple",
+    "nonuple",
+    "decuple"
 };
 
 void ReadNumber(int num, int cnt)
 {
-	if (cnt < 2 || cnt > 10)
-		for (int i = 1; i <= cnt; ++i)
-			cout << ' ' << Digit[num];
-	else
-		cout << ' ' << Dup[cnt] << ' ' << Digit[num];
+    if (cnt < 2 || cnt > 10) {
+        for (int i = 1; i <= cnt; ++i)
+            cout << ' ' << Digit[num];
+    }
+    else
+        cout << ' ' << Dup[cnt] << ' ' << Digit[num];
 }
 
 int main()
 {
-	int T, iCase;
-	scanf("%d", &T);
-	for (iCase = 1; iCase <= T; ++iCase) {
-		char num[NMAX];
-		list<int> divide; // use a queue to store dividing format
-		cin >> num;
-		do {
-			int x;
-			cin >> x;
-			divide.push_back(x);
-		} while (cin.get() == '-');
+    int T, iCase;
+    scanf("%d", &T);
+    for (iCase = 1; iCase <= T; ++iCase) {
+        char num[NMAX];
+        list<int> divide; // use a queue to store dividing format
+        cin >> num;
+        do {
+            int x;
+            cin >> x;
+            divide.push_back(x);
+        } while (cin.get() == '-');
 
-		const char *s = num;
-		printf("Case #%d:", iCase);
-		while (divide.size() != 0) {
-			char c = *s;
-			int cnt = 0;
-			for (int i = divide.front(); i > 0; --i) { 
-				if (*s++ == c)
-					++cnt;
-				else {
-					ReadNumber(c - '0', cnt);
-					c = *(s - 1);
-					cnt = 1;
-				}
-			}
-			ReadNumber(*(s - 1) - '0', cnt);
-			divide.pop_front();
-		}
-		cout << endl;
-	}
+        const char *s = num;
+        printf("Case #%d:", iCase);
+        while (divide.size() != 0) {
+            char c = *s;
+            int cnt = 0;
+            for (int i = divide.front(); i > 0; --i) { 
+                if (*s++ == c)
+                    ++cnt;
+                else {
+                    ReadNumber(c - '0', cnt);
+                    c = *(s - 1);
+                    cnt = 1;
+                }
+            }
+            ReadNumber(*(s - 1) - '0', cnt);
+            divide.pop_front();
+        }
+        cout << endl;
+    }
 }
