@@ -34,55 +34,55 @@ using namespace std;
 
 void find(ULL x, ULL &p, ULL &q)
 {
-	ULL index = 0x8000000000000000; // b'1000000...000 (63 zeros binary)
-	p = q = 1;
-	while (0 == (x & index))
-		index >>= 1;
-	while ((index >>= 1) != 0) {
-		if (x & index)
-			p += q;
-		else
-			q += p;
-	}
+    ULL index = 0x8000000000000000; // 1000000...000 (63 zeros binary)
+    p = q = 1;
+    while (0 == (x & index))
+        index >>= 1;
+    while ((index >>= 1) != 0) {
+        if (x & index)
+            p += q;
+        else
+            q += p;
+    }
 }
 
 ULL findID(ULL p, ULL q)
 {
-	ULL index = 1;
-	ULL id = 0;
-	while (p != q) { // p == q only at root: 1/1
-		if (p > q) { // right child of its father
-			id += index; // current bit should be odd
-			p -= q;
-		}
-		else		// left child of its father
-			q -= p;
-		index <<= 1;
-	}
-	return id += index;
+    ULL index = 1;
+    ULL id = 0;
+    while (p != q) { // p == q only at root: 1/1
+        if (p > q) { // right child of its father
+            id += index; // current bit should be odd
+            p -= q;
+        }
+        else        // left child of its father
+            q -= p;
+        index <<= 1;
+    }
+    return id += index;
 }
 
 int main()
 {
-	int T, iCase;
-	scanf("%d", &T);
-	for(iCase = 1; iCase <= T; ++iCase) {
-		int id;
-		cin >> id;
-		printf("Case #%d:", iCase);
-		if (id == 1) {
-			ULL x, p, q;
-			cin >> x;
-			find(x, p, q);
-			cout << ' ' << p << ' ' << q;
-		}
-		else if (id == 2) {
-			ULL p, q;
-			cin >> p >> q;
-			cout << ' ' << findID(p, q);
-		}
-		cout << endl;
-	}
+    int T, iCase;
+    scanf("%d", &T);
+    for(iCase = 1; iCase <= T; ++iCase) {
+        int id;
+        cin >> id;
+        printf("Case #%d:", iCase);
+        if (id == 1) {
+            ULL x, p, q;
+            cin >> x;
+            find(x, p, q);
+            cout << ' ' << p << ' ' << q;
+        }
+        else if (id == 2) {
+            ULL p, q;
+            cin >> p >> q;
+            cout << ' ' << findID(p, q);
+        }
+        cout << endl;
+    }
 
-	return 0;
+    return 0;
 }
